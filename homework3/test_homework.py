@@ -43,7 +43,18 @@ def test_sending_form(new_setup_for_browser):
     browser.element('.modal-title').should(have.text('Thanks for submitting the form'))
 
     time.sleep(3)
-
+    browser.all('td').should(have.texts([
+        'Student Name', 'Daniil Zhuravlev',
+        'Student Email', 'butmanovich@yandex.ru',
+        'Gender', 'Male',
+        'Mobile', '7999512555',
+        'Date of Birth', '23 March,2002',
+        'Subjects', 'English', 'Computer Science',
+        'Hobbies', 'Sports',
+        'Picture', '123123.PNG',
+        'Address', 'г.Москва, Покровка, 5',
+        'State and City', 'NCR Delhi'
+        ]
+    ))
     browser.element('#closeLargeModal').click()
-
     time.sleep(2)
