@@ -1,3 +1,4 @@
+import os
 import time
 
 from selene import browser, have, be
@@ -28,7 +29,7 @@ def test_sending_form(new_setup_for_browser):
 
     browser.element('label[for="hobbies-checkbox-1"]').click()
 
-    browser.element("#uploadPicture").set_value('C:/Users/Denzel/Pictures/123123.png')
+    browser.element("#uploadPicture").set_value(os.path.abspath('img/123123.png'))
 
     browser.element('#currentAddress').type("г.Москва, Покровка, 5")
 
@@ -42,16 +43,15 @@ def test_sending_form(new_setup_for_browser):
 
     browser.element('.modal-title').should(have.text('Thanks for submitting the form'))
 
-    time.sleep(3)
     browser.all('td').should(have.texts([
         'Student Name', 'Daniil Zhuravlev',
         'Student Email', 'butmanovich@yandex.ru',
         'Gender', 'Male',
         'Mobile', '7999512555',
         'Date of Birth', '23 March,2002',
-        'Subjects', 'English', 'Computer Science',
+        'Subjects', 'English, Computer Science',
         'Hobbies', 'Sports',
-        'Picture', '123123.PNG',
+        'Picture', '123123.png',
         'Address', 'г.Москва, Покровка, 5',
         'State and City', 'NCR Delhi'
         ]
