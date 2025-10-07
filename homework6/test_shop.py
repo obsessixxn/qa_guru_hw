@@ -43,10 +43,9 @@ class TestProducts:
     def test_product_buy_more_than_available(self, product):
         # TODO напишите проверки на метод buy,
         #  которые ожидают ошибку ValueError при попытке купить больше, чем есть в наличии
-        buy_quantity = product.quantity + 1
-        products = product.quantity
-        product.buy(buy_quantity)
-        assert product.quantity == products - buy_quantity
+        with pytest.raises(ValueError):
+            buy_quantity = product.quantity + 1
+            product.buy(buy_quantity)
 
 
 @pytest.fixture(scope="function")
